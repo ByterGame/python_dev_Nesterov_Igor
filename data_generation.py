@@ -1,11 +1,10 @@
 from faker import Faker
 import uuid
-from datetime import datetime
-from models.author_db_models import Author, Blog, Post, db1
-from models.logs_db_models import SpaceType, EventType, Logs, db2
+from models.author_db_models import Author, Blog, Post
+from models.logs_db_models import SpaceType, EventType, Logs
 
 
-def generate_authors(n=1000):
+def generate_authors(n=50):
     fake = Faker()
     authors = []
     for _ in range(n):               
@@ -18,7 +17,7 @@ def generate_authors(n=1000):
     return authors
 
 
-def generate_blogs(authors, n=2000):
+def generate_blogs(authors, n=50):
     fake = Faker()
     blogs = []
     for _ in range(n):
@@ -32,7 +31,7 @@ def generate_blogs(authors, n=2000):
     return blogs
 
 
-def generate_posts(authors, blogs, n=2000):
+def generate_posts(authors, blogs, n=300):
     fake = Faker()
     posts = []
     for _ in range(n):
@@ -65,6 +64,8 @@ def generate_logs(posts, n=5000):
 
 
 def main():
+    # Вы можете передать в каждую функцию дополнительный параметр (int) для увеличения/уменьшения количества записей
+    
     authors = generate_authors()
     print(f"Generated {len(authors)} authors")
 

@@ -1,11 +1,12 @@
 from peewee import Model, SqliteDatabase, CharField, UUIDField, DateTimeField, ForeignKeyField
 import uuid
-if __name__ == "__main__": # ДА, ЭТО ОТСТОЙ
-    from author_db_models import Post
-else:
-    from models.author_db_models import Post
+import os   
+    
 
-db2 = SqliteDatabase('databases/logs.db')
+db_path = 'databases/logs.db'
+os.makedirs(os.path.dirname(db_path), exist_ok=True)
+
+db2 = SqliteDatabase(db_path)
 
 
 class BaseModel(Model):
@@ -24,7 +25,7 @@ class EventType(BaseModel):
 
 
 class Logs(BaseModel):
-    id = UUIDField(primary_key=True)
+    id = UUIDField(primary_key=True, default=uuid.uuid4())
     datetime = DateTimeField()
     user_login = CharField()
     space_type_id = ForeignKeyField(SpaceType)
