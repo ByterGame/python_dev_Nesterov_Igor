@@ -21,15 +21,15 @@ class SpaceType(BaseModel):
 class EventType(BaseModel):
     # login, comment, create_post, delete_post, logout
     type = CharField(default='unknown')
-    post_info = ForeignKeyField(Post)
 
 
 class Logs(BaseModel):
-    id = UUIDField(primary_key=True, default=uuid.uuid4())
+    id = UUIDField(primary_key=True)
     datetime = DateTimeField()
     user_login = CharField()
     space_type_id = ForeignKeyField(SpaceType)
-    event_type_id = ForeignKeyField(EventType)
+    event_type_id = ForeignKeyField(EventType)    
+    info_about_post = CharField(null=True)
 
 
 db2.connect()

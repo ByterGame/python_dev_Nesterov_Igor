@@ -10,20 +10,20 @@ class BaseModel(Model):
 
 
 class Author(BaseModel):
-    id = UUIDField(primary_key=True, default=uuid.uuid4)
+    id = UUIDField(primary_key=True)
     login = CharField(max_length=100, unique=True)
     email = CharField(max_length=100, unique=True)
 
 
 class Blog(BaseModel):
-    id = UUIDField(primary_key=True, default=uuid.uuid4())
+    id = UUIDField(primary_key=True)
     owner = ForeignKeyField(Author, backref='blogs')
     name = CharField(max_length=200)
     description = TextField()
 
 
 class Post(BaseModel):
-    id = UUIDField(primary_key=True, default=uuid.uuid4())
+    id = UUIDField(primary_key=True)
     header = CharField(max_length=200)
     text = TextField()
     author = ForeignKeyField(Author, backref='posts')
